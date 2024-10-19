@@ -67,10 +67,9 @@ function playRound(computerChoice, humanChoice) {
         
     } 
     else {
-        console.log("El dato que introduciste no es correcto");
+        console.log("El dato que introdujiste no es correcto");
     }
 }
-
 
 
 console.log (humanScore);
