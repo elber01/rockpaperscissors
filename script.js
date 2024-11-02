@@ -1,98 +1,61 @@
-// this game is on spanish if you need it on english let me know
 let computerScore = 0;
 let humanScore = 0;
 
-
 function getComputerChoice() {
     let computerChoice = Math.random() * 100;
-    console.log(computerChoice);
     
-    // Translating to  piedra, papel o tijera
     if (computerChoice <= 33) {
         console.log("PIEDRA");
-        computerChoice = "PIEDRA";  // Asign the value
-        return computerChoice;
-    }
-    else if (computerChoice > 33 && computerChoice <= 66) {
+        return 1;
+    } else if (computerChoice > 33 && computerChoice <= 66) {
         console.log("PAPEL");
-        computerChoice = "PAPEL";  // Asign the value
-        return computerChoice;
-    }
-    else {
+        return 2;
+    } else {
         console.log("TIJERA");
-        computerChoice = "TIJERA";  // Asign the value
-        return computerChoice;
+        return 3;
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Elija que desea escoger: piedra, papel o tijera");
-    humanChoice = humanChoice.toUpperCase();
-    console.log(humanChoice);
-    return humanChoice;
+// Variables for buttons
+const piedra = document.querySelector('.rock');
+const papel = document.querySelector('.paper');
+const tijera = document.querySelector('.scissors');
+
+// Función that manage user choices
+function setupChoices() {
+    piedra.addEventListener('click', () => playGame(1));
+    papel.addEventListener('click', () => playGame(2));
+    tijera.addEventListener('click', () => playGame(3));
 }
 
 function playRound(computerChoice, humanChoice) {
-    if (computerChoice == humanChoice) {
+    if (computerChoice === humanChoice) {
         console.log("It's a tie");
-    } 
-    else if (computerChoice == "PIEDRA" && humanChoice == "PAPEL") {
-        console.log("YOU WIN");
-         humanScore += 1;
-         
-    } 
-    else if (computerChoice == "PIEDRA" && humanChoice == "TIJERA") {
-        console.log("YOU LOSE");
-         computerScore += 1;
-        
-    } 
-    else if (computerChoice == "PAPEL" && humanChoice == "PIEDRA") {
-        console.log("YOU LOSE");
-        computerScore += 1;
-        
-    } 
-    else if (computerChoice == "PAPEL" && humanChoice == "TIJERA") {
+    } else if ((computerChoice === 1 && humanChoice === 2) ||
+               (computerChoice === 2 && humanChoice === 3) ||
+               (computerChoice === 3 && humanChoice === 1)) {
         console.log("YOU WIN");
         humanScore += 1;
-        
-    } 
-    else if (computerChoice == "TIJERA" && humanChoice == "PIEDRA") {
-        console.log("YOU WIN");
-        humanScore += 1;
-        
-    } 
-    else if (computerChoice == "TIJERA" && humanChoice == "PAPEL") {
+    } else {
         console.log("YOU LOSE");
         computerScore += 1;
-        
-    } 
-    else {
-        console.log("El dato que introdujiste no es correcto");
+    }
+    const h1 = document.querySelector('h1');
+    const div =  document.querySelector('.points');
+    div.textContent= (`Human Score: ${humanScore}  Computer Score: ${computerScore}`);
+    h1.appendChild (div);
+
+}
+
+function playGame(humanChoice) {
+    let computerChoice = getComputerChoice();
+    playRound(computerChoice, humanChoice);
+
+    if (humanScore === 5) {
+        alert("YOU WIN THE GAME");
+    } else if (computerScore === 5) {
+        alert("YOU LOSE THE GAME");
     }
 }
 
-
-console.log (humanScore);
-console.log (computerScore);
-
-function playGame(){
-    while (humanScore != 5 || computerScore !=5 ){
-      // Execute the game
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
-
-        playRound(computerChoice, humanChoice);
-  
-        if (humanScore === 5) {
-            console.log("YOU WIN THE GAME");
-             break;
-                } 
-        else if (computerScore === 5) {
-            console.log("YOU LOSE BY THE COMPUTER");
-            break;
-            } 
-        }
-
-}
-
-playGame();
+setupChoices();

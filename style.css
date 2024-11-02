@@ -1,0 +1,47 @@
+body {
+display: flex;
+flex-direction: column;
+background-color:#cfe0e8;
+height: 600px;
+width: auto;
+justify-content: center;
+padding-left: 100px;
+padding-right: 100px;
+/*border: solid black;*/
+
+}
+
+.cont1, .cont2 {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: solid black;
+    max-width: 100%; /* Asegura que el wrap ocurra */
+    gap: 10px; /* Espaciado entre elementos opcional */
+}
+
+.cont1 {
+    background-color:#e06377 ;
+}
+.cont2{
+
+background-color: #f9d5e5;
+}
+
+.name {
+justify-content: center;
+
+}    
+h1 {
+color: #f0f0f0;
+font-family: Arial, Helvetica, sans-serif;
+justify-content: center;
+}
+
+button {
+background-color:  #e06377 ;
+height:100px;
+width: 100px;
+}
+
